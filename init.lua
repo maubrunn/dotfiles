@@ -40,6 +40,15 @@ require('lazy').setup({
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+        -- calling `setup` is optional for customization
+        require("fzf-lua").setup({})
+    end
+    }  
 })
 
 
@@ -47,7 +56,7 @@ vim.opt.termguicolors = true
 vim.cmd.colorscheme('tokyonight')
 
 vim.opt.signcolumn = 'yes'
-
+vim.keymap.set("n", "<c-P>", require('fzf-lua').files, { desc = "Fzf Files" })
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
@@ -78,6 +87,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 require('lspconfig').rust_analyzer.setup({})
+require('lspconfig').vuels.setup({cmd = { "deno", "run", "-q", "--allow-read", "--allow-sys", "Library/Caches/deno/npm/registry.npmjs.org/vls/0.8.5/bin/vls" }})
+require('lspconfig').pyright.setup({})
 
 local cmp = require('cmp')
 

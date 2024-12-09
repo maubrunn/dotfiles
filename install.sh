@@ -34,3 +34,23 @@ if [[ "$response" == "Y" || "$response" == "y" || "$response" ==  "" ]]; then
 	fi
 	ln -s $dotfile_dir/init.lua $nvim_dir/init.lua
 fi
+
+read -p "Do you want to install the zshrc stuff? [Y/n] " response
+
+if [[ "$response" == "Y" || "$response" == "y" || "$response" ==  "" ]]; then
+	echo "zshrc stuff"
+	ln -s $dotfile_dir/.zshrc ~/.zshrc
+fi
+
+
+read -p "Do you want to install the dockerciao stuff? [Y/n] " response
+
+if [[ "$response" == "Y" || "$response" == "y" || "$response" == "" ]]; then
+	echo "Dockerciao stuff"
+	if ! [ -d ~/bin ]; then
+		mkdir ~/bin
+	fi
+	ln -s $dotfile_dir/dockerciao.sh ~/bin/dockerciao
+    echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc
+fi
+

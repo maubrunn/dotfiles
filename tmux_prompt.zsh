@@ -22,7 +22,7 @@ if [[ "$choice" = "1" ]]; then
     # Prompt for Docker container name
     container_name=forzaeth_devcontainer
     if check_container_running "$container_name"; then
-	tmux send-keys "~/catkin_ws/src/race_stack/.docker_utils/sec_dock.sh" C-m
+	tmux send-keys "~/pbl/f110/race_stack/.docker_utils/sec_dock.sh" C-m
     else
 	echo "Docker container not running"
     fi
